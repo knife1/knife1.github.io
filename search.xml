@@ -3,10 +3,9 @@
   
     
     <entry>
-      <title></title>
+      <title><![CDATA[JavaScript中的对象]]></title>
       <url>/2017/06/15/%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AE%80%E4%BB%8B/</url>
-      <content type="html"><![CDATA[<hr>
-<h2 id="JavaScript中的对象"><a href="#JavaScript中的对象" class="headerlink" title=" JavaScript中的对象 "></a> JavaScript中的对象 </h2><p>2017/6/12 21:37:26 </p>
+      <content type="html"><![CDATA[<p>2017/6/12 21:37:26 </p>
 <h2 id="对象的简介"><a href="#对象的简介" class="headerlink" title="对象的简介"></a>对象的简介</h2><p><strong>JavaScript</strong>是一门面向对象的语言，面向对象的标志是有类的概念，通过类可以创建任意多个具有相同属性和方法的对象。<strong>ECMA-262</strong>将对象定义为“无序属性的集合，其属性可以包含基本值、对象或者函数。”我的理解是对象就是一些属性和方法组合在一起而构成的一个数据实体。</p>
 <h2 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h2><h3 id="1、创建一个Object实例"><a href="#1、创建一个Object实例" class="headerlink" title="1、创建一个Object实例"></a>1、创建一个Object实例</h3><pre><code>//创建实例，返回的引用保存在一个变量中，相当于c中的指针，指向创建的实例
   var person = new Object();
