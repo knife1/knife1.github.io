@@ -253,6 +253,152 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/垃圾处理机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="knife">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="web">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/30/垃圾处理机制/" itemprop="url">JavaScript的垃圾回收</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T21:35:37+08:00">
+                2017-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/06/30/垃圾处理机制/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/06/30/垃圾处理机制/" class="cy_cmt_count" data-xid="2017/06/30/垃圾处理机制/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/06/30/垃圾处理机制/" class="leancloud_visitors" data-flag-title="JavaScript的垃圾回收">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="js中的垃圾回收机制"><a href="#js中的垃圾回收机制" class="headerlink" title="js中的垃圾回收机制"></a>js中的垃圾回收机制</h1><p>和其他的C、C++之类的语言不同，js具有自动垃圾收集机制，其原理大致是：按照固定的时间间隔周期性的找出那些不需要再使用的的变量，将它所占用的内存释放。例如局部变量，一旦函数结束，局部变量就没有存在必要了，可以释放它们占用的内存。貌似很简单的工作，为什么会有很大开销呢？这仅仅是垃圾回收的冰山一角，就像闭包，貌似函数结束了，其实还没有，垃圾回收器必须知道哪个变量有用，哪个变量没用，对于不再有用的变量打上标记，以备将来回收。用于标记无用的策略有很多，常见的有两种方式</p>
+<h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>在js中最常用的垃圾收集方式就是<strong>标记清除</strong>，其工作方式是：当一个变量进入环境时，将其标记为<strong>进入环境</strong>（可以使用很多方式来进行标记，例如翻转某个特殊位来记录，或者使用一个“进入环境”的变量列表和“离开环境”的变量列表来跟踪变量的变化），如何标记并不重要，关键是采用什么策略；</p>
+<p>垃圾回收器会在运行的时候给存储在内存中的所有变量加上标记，然后去掉环境中的变量以及被环境中变量所引用的变量，在这些完成之后仍存在标记的就是要删除的变量了，因为环境中的变量已经无法访问到这些变量了，然后垃圾回收器相会这些带有标记的变量机器所占空间；低版本的ie采用第二种垃圾收集策略；</p>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p><strong>引用计数</strong>的含义就是跟踪记录每个值被引用的次数，当声明了一个变量并将一个引用类型赋值给该变量的时候这个值的引用次数就加1，如果该变量的值变成了另外一个，则这个值得引用次数减1，当这个值的引用次数变为0的时候，说明没有变量在使用，这个值没法被访问了，因此可以将其占用的空间回收，这样垃圾回收器会在运行的时候清理掉引用次数为0的值占用的空间。</p>
+<p>很快就遇到了很严重的问题<strong>循环引用</strong>：对象A中包含一个指向对象B的指针，而对象B也包含一个指向对象A的指针，如下所示：<br>    function test(){<br>        var objA = new object();<br>        var objB = new object();<br>        objA.someObject = objB;<br>        objB.anotherObject = objA;<br>    }</p>
+<p>上面的两个对象通过各自的属性相互引用（次数都是2）；在标记清除的策略中没问题，在引用计数时，函数执行完毕后，两个对象仍然继续存在，因为他们的次数永远不为0；大家都知道，IE中有一部分对象并不是原生js对象，COM对象（BOM和DOM）就是采用引用计数，所以在IE中涉及到COM对象就存在循环引用问题，如下：</p>
+<pre><code>var    element = document.getElementById(&quot;element&quot;);
+var obj = {};
+element.obj1 = obj;
+obj.element = elememt;
+</code></pre><p>既然出现了问题就会有相应的解决方法，最好是在不使用它们的时候手动断开原生js对象与DOM对象之间的连接，如下：</p>
+<pre><code>element.obj1 = null;
+obj.element = null;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/15/对象的简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -619,7 +765,7 @@ Sub.prototype.constructor = Sub;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
