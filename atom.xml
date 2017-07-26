@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-30T14:54:55.069Z</updated>
+  <updated>2017-07-26T14:08:06.208Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/07/26/%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+    <id>http://yoursite.com/2017/07/26/作用域/</id>
+    <published>2017-07-26T14:09:54.962Z</published>
+    <updated>2017-07-26T14:08:06.208Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="javascript的作用域"><a href="#javascript的作用域" class="headerlink" title="javascript的作用域"></a>javascript的作用域</h1><p>为了后面介绍的<strong>闭包</strong>，我先在这里介绍JavaScript中的作用域，作用域控制着变量与参数的可见性和生命周期。<br><br>JavaScript的一个重要的概念就是<strong>执行环境</strong>，每个执行环境都有一个与之相关的变量对象，环境中定义的所有变量和函数都保存在这个对象中；其中最外围的执行环境是全局执行环境，在web浏览器中，全局执行环境被认为是window对象，所有全局变量和函都作为window对象的属性和方法创建的，所以全局中的函数内部的this指向的是window（万事不是绝对的，也可以通过call()和aplly()方法改变this的指向，这里就不做详细的介绍，知道全局中的函数this可以改变指向就可以了，默认情况指向window）<br></p>
+<pre><code>function test(){
+    alert(this);    
+}
+test();   //window对象
+</code></pre><p>每个函数都有自己的执行环境，当执行某个函数的时候，函数的环境会推入一个环境栈中，函数执行完毕后，栈将其环境弹出，把控制权返回给之前的执行环境。<br><br>当代码进入一个环境中执行时，会创建变量对象的一个<strong>作用域链</strong>，其作用是保证对执行环境有权访问的所有变量和函数的有序访问。作用域的前端是当前正在执行代码所在的环境变量对象；其工作机制是向上查找机制，意思是在当前代码执行环境中找不到要求的变量和函数就会向其包含(外部)环境中查找，如果还是没有就向外部的外部环境中查找，以此类推一直找到window对象，只要找到就停止向上查找，注意不能反向查找；</p>
+<pre><code>//向上查找机制
+var age = 30;
+var sex = &quot;男&quot;;
+function person(){
+    name = &quot;小明&quot;；
+    var age = 18;
+    console.log(age); 
+    console.log(sex);
+}
+person();  //18  男
+console.log(name); //小明
+</code></pre><p>上面的代码可以看出，当执行person的时候，执行环境时函数，在内部查找有age变量，所以停止向上查找打印全局中的age变量的值，而sex在函数环境中没有，根据作用域向上查找到window对象中的sex变量的值并打印，相信都注意到最后一行的代码了，这里我是在全局中打印name变量，按理来说我并没有在全局中定义这个变量，为什么不是undefined呢？仔细看person函数内部定义了变量name但是没有使用关键字var，这样定义的变量会直接定义在全局中，使全局也可以使用这个变量，但是不建议大家使用，过度使用会造成污染全局变量，并且在严格模式下这样会导致错误；<br><br><strong>在JavaScript中没有块级作用域</strong>，只有函数作用域，在其他类的C语言中，由花括号封闭的代码都有自己的作用域，所以在JavaScript中if和for语句定义的变量在其运行完毕后仍然存在，他们定义的变量添加到了当前的执行环境中，而在函数内部定义的变量，在函数内部的任何地方都可见；</p>
+<pre><code>//没有块级作用域
+for (var i = 0; i &lt; 10; i++){
+    //运行相应的代码
+}
+alert(i);  //10
+</code></pre><p><strong>注意</strong>：由于JavaScript没有块级作用域，所以推荐在函数体的顶部定义所有的变量。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;javascript的作用域&quot;&gt;&lt;a href=&quot;#javascript的作用域&quot; class=&quot;headerlink&quot; title=&quot;javascript的作用域&quot;&gt;&lt;/a&gt;javascript的作用域&lt;/h1&gt;&lt;p&gt;为了后面介绍的&lt;strong&gt;闭包&lt;/str
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaScript的垃圾回收</title>
