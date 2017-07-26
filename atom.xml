@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-26T14:08:06.208Z</updated>
+  <updated>2017-07-26T14:13:20.498Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>学习作用域</title>
     <link href="http://yoursite.com/2017/07/26/%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
     <id>http://yoursite.com/2017/07/26/作用域/</id>
     <published>2017-07-26T14:09:54.962Z</published>
-    <updated>2017-07-26T14:08:06.208Z</updated>
+    <updated>2017-07-26T14:13:20.498Z</updated>
     
     <content type="html"><![CDATA[<h1 id="javascript的作用域"><a href="#javascript的作用域" class="headerlink" title="javascript的作用域"></a>javascript的作用域</h1><p>为了后面介绍的<strong>闭包</strong>，我先在这里介绍JavaScript中的作用域，作用域控制着变量与参数的可见性和生命周期。<br><br>JavaScript的一个重要的概念就是<strong>执行环境</strong>，每个执行环境都有一个与之相关的变量对象，环境中定义的所有变量和函数都保存在这个对象中；其中最外围的执行环境是全局执行环境，在web浏览器中，全局执行环境被认为是window对象，所有全局变量和函都作为window对象的属性和方法创建的，所以全局中的函数内部的this指向的是window（万事不是绝对的，也可以通过call()和aplly()方法改变this的指向，这里就不做详细的介绍，知道全局中的函数this可以改变指向就可以了，默认情况指向window）<br></p>
 <pre><code>function test(){
