@@ -92,16 +92,16 @@
 
 
 
-<meta name="description" content="javascript的作用域为了后面介绍的闭包，我先在这里介绍JavaScript中的作用域，作用域控制着变量与参数的可见性和生命周期。JavaScript的一个重要的概念就是执行环境，每个执行环境都有一个与之相关的变量对象，环境中定义的所有变量和函数都保存在这个对象中；其中最外围的执行环境是全局执行环境，在web浏览器中，全局执行环境被认为是window对象，所有全局变量和函都作为window对">
+<meta name="description" content="闭包的定义有不少的学习者总是将闭包和匿名函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习作用域">
-<meta property="og:url" content="http://yoursite.com/2017/07/26/作用域/index.html">
+<meta property="og:title" content="详谈JavaScript中的闭包">
+<meta property="og:url" content="http://yoursite.com/2017/08/13/闭包/index.html">
 <meta property="og:site_name" content="web">
-<meta property="og:description" content="javascript的作用域为了后面介绍的闭包，我先在这里介绍JavaScript中的作用域，作用域控制着变量与参数的可见性和生命周期。JavaScript的一个重要的概念就是执行环境，每个执行环境都有一个与之相关的变量对象，环境中定义的所有变量和函数都保存在这个对象中；其中最外围的执行环境是全局执行环境，在web浏览器中，全局执行环境被认为是window对象，所有全局变量和函都作为window对">
-<meta property="og:updated_time" content="2017-07-26T14:15:05.926Z">
+<meta property="og:description" content="闭包的定义有不少的学习者总是将闭包和匿名函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
+<meta property="og:updated_time" content="2017-08-13T13:36:26.561Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学习作用域">
-<meta name="twitter:description" content="javascript的作用域为了后面介绍的闭包，我先在这里介绍JavaScript中的作用域，作用域控制着变量与参数的可见性和生命周期。JavaScript的一个重要的概念就是执行环境，每个执行环境都有一个与之相关的变量对象，环境中定义的所有变量和函数都保存在这个对象中；其中最外围的执行环境是全局执行环境，在web浏览器中，全局执行环境被认为是window对象，所有全局变量和函都作为window对">
+<meta name="twitter:title" content="详谈JavaScript中的闭包">
+<meta name="twitter:description" content="闭包的定义有不少的学习者总是将闭包和匿名函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/07/26/作用域/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/13/闭包/"/>
 
 
 
 
 
-  <title>学习作用域 | web</title>
+  <title>详谈JavaScript中的闭包 | web</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/26/作用域/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/13/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="knife">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">学习作用域</h1>
+          <h1 class="post-title" itemprop="name headline">详谈JavaScript中的闭包</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-26T22:09:54+08:00">
-                2017-07-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-13T21:36:55+08:00">
+                2017-08-13
               </time>
             
 
@@ -304,8 +304,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/07/26/作用域/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/07/26/作用域/" itemprop="commentsCount"></span>
+                <a href="/2017/08/13/闭包/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/08/13/闭包/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -313,7 +313,7 @@
 
           
           
-             <span id="/2017/07/26/作用域/" class="leancloud_visitors" data-flag-title="学习作用域">
+             <span id="/2017/08/13/闭包/" class="leancloud_visitors" data-flag-title="详谈JavaScript中的闭包">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -341,30 +341,64 @@
       
 
       
-        <h1 id="javascript的作用域"><a href="#javascript的作用域" class="headerlink" title="javascript的作用域"></a>javascript的作用域</h1><p>为了后面介绍的<strong>闭包</strong>，我先在这里介绍JavaScript中的作用域，作用域控制着变量与参数的可见性和生命周期。<br><br>JavaScript的一个重要的概念就是<strong>执行环境</strong>，每个执行环境都有一个与之相关的变量对象，环境中定义的所有变量和函数都保存在这个对象中；其中最外围的执行环境是全局执行环境，在web浏览器中，全局执行环境被认为是window对象，所有全局变量和函都作为window对象的属性和方法创建的，所以全局中的函数内部的this指向的是window（万事不是绝对的，也可以通过call()和aplly()方法改变this的指向，这里就不做详细的介绍，知道全局中的函数this可以改变指向就可以了，默认情况指向window）<br></p>
-<pre><code>function test(){
-    alert(this);    
+        <h1 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h1><p>有不少的学习者总是将<strong>闭包</strong>和<strong>匿名函数</strong>搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数；</p>
+<h2 id="1、回顾"><a href="#1、回顾" class="headerlink" title="1、回顾"></a>1、回顾</h2><p>前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子：<br></p>
+<pre><code>function sum () {
+    var a = 10,
+        b = 20;
+    return function (c) {
+        return a + b + c;
+    }
 }
-test();   //window对象
-</code></pre><p>每个函数都有自己的执行环境，当执行某个函数的时候，函数的环境会推入一个环境栈中，函数执行完毕后，栈将其环境弹出，把控制权返回给之前的执行环境。<br><br>当代码进入一个环境中执行时，会创建变量对象的一个<strong>作用域链</strong>，其作用是保证对执行环境有权访问的所有变量和函数的有序访问。作用域的前端是当前正在执行代码所在的环境变量对象；其工作机制是向上查找机制，意思是在当前代码执行环境中找不到要求的变量和函数就会向其包含(外部)环境中查找，如果还是没有就向外部的外部环境中查找，以此类推一直找到window对象，只要找到就停止向上查找，注意不能反向查找；</p>
-<pre><code>//向上查找机制
-var age = 30;
-var sex = &quot;男&quot;;
-function person(){
-    name = &quot;小明&quot;；
-    var age = 18;
-    console.log(age); 
-    console.log(sex);
+var add = sum();
+document.writeln(add(1));    //31
+</code></pre><p>在这个例子中，在内部函数（匿名函数）中，访问了外部函数中的变量a、b,当这个函数返回的时候，在其他地方被调用，仍然可以访问到这两个变量，因为，内部函数的作用域链包含sum()的作用域；由此可见对于作用域链的了解对闭包的学习至关重要，当某个函数被调用的时候，会创建一个执行环境和相应的作用域链，用arguments和其他命名参数的值来初始化函数的活动对象，在作用域链中，外部函数的活动对象始终处于第二位，外部函数的外部函数的活动对象处于第三位，这样一直到作为终点的全局执行环境；</p>
+<h2 id="2、使用闭包"><a href="#2、使用闭包" class="headerlink" title="2、使用闭包"></a>2、使用闭包</h2><p>在很多才开始学习的人对闭包并不能理解，为什么要访问其他函数作用域中的东西，我将要用到的东西全部放在全局作用域不就可以了？这就涉及了全局变量特性的弊端了；</p>
+<h3 id="2-1、全局变量-一个糟糕的依赖"><a href="#2-1、全局变量-一个糟糕的依赖" class="headerlink" title="2.1、全局变量(一个糟糕的依赖)"></a>2.1、全局变量(一个糟糕的依赖)</h3><p>全局变量就是在所有作用域中都可见的变量。在开始的时候会带来方便，但是当程序变得越来越复杂的时候，它们将变得难以管理，因为它们在程序的任何部分的任何时间修改，降低了程序的可靠性，全局变量使得同一个程序中的独立子程序运行出错，因为全局变量中的变量恰好等于子程序中的变量时，就会相互冲突；</p>
+<h3 id="2-2、拥有自己的私有变量"><a href="#2-2、拥有自己的私有变量" class="headerlink" title="2.2、拥有自己的私有变量"></a>2.2、拥有自己的私有变量</h3><pre><code>function hello (name) {
+    return function () {
+        alert(&quot;hello &quot;+ name + &quot;!&quot;);
+    }
 }
-person();  //18  男
-console.log(name); //小明
-</code></pre><p>上面的代码可以看出，当执行person的时候，执行环境时函数，在内部查找有age变量，所以停止向上查找打印全局中的age变量的值，而sex在函数环境中没有，根据作用域向上查找到window对象中的sex变量的值并打印，相信都注意到最后一行的代码了，这里我是在全局中打印name变量，按理来说我并没有在全局中定义这个变量，为什么不是undefined呢？仔细看person函数内部定义了变量name但是没有使用关键字var，这样定义的变量会直接定义在全局中，使全局也可以使用这个变量，但是不建议大家使用，过度使用会造成污染全局变量，并且在严格模式下这样会导致错误；<br><br><strong>在JavaScript中没有块级作用域</strong>，只有函数作用域，在其他类的C语言中，由花括号封闭的代码都有自己的作用域，所以在JavaScript中if和for语句定义的变量在其运行完毕后仍然存在，他们定义的变量添加到了当前的执行环境中，而在函数内部定义的变量，在函数内部的任何地方都可见；</p>
-<pre><code>//没有块级作用域
-for (var i = 0; i &lt; 10; i++){
-    //运行相应的代码
+var sayhello = hello(&quot;Jack&quot;);
+sayhello();    //hello Jack!
+</code></pre><p>只有通过sayhello()访问到hello函数中的name变量，因为hello()执行完毕后其执行环境的作用域链会被销毁，但它的活动对象仍然会留在内存中，因为匿名函数的作用域链仍然在引用这个活动对象，私有这个概念对创建保护隐私的对象中很有用； </p>
+<h3 id="2-3、糟糕的例子"><a href="#2-3、糟糕的例子" class="headerlink" title="2.3、糟糕的例子"></a>2.3、糟糕的例子</h3><p>这里我们需要理解的是，内部函数能访问到外部函数的实际变量而无须复制是很重要的；</p>
+<pre><code>var addEvents = function (targets) {
+    var i,
+        len;
+    for (i = 0, len = targets.length; i &lt; len; i +=1) {
+        targets[i].onclick = function (e) {
+            alert(i);    //总会弹出总节点的数目
+        }    
+    }
+};
+</code></pre><p>上面结果出现时因为：当进入循环的时候，i递增且按顺序给节点绑定点击事件和处理函数，此时并不会马上执行事件处理函数，当全部节点都绑定了事件的时候，i的值已经增加为节点的数目，此时点击事件触发的时候，处理函数在它的内部找不到变量i就会沿着作用域链向上查找到addEvent中的变量i，但是i已经递增到了节点数量。<br><strong>解决方法</strong>：直接调用函数，或则将i保存在其他地方，改进(避免在循环中创建函数)后：</p>
+<pre><code>var addEvents = function (targets) {
+    var i,
+        len;
+    var handlers = function (i) {
+        return function (e) {
+            alert(i);
+        };    
+    };
+    for (i = 0, len = targets.length; i &lt; len; i += 1) {
+        target[i].onclick = handlers (i);
+    }
+
 }
-alert(i);  //10
-</code></pre><p><strong>注意</strong>：由于JavaScript没有块级作用域，所以推荐在函数体的顶部定义所有的变量。</p>
+var addEvents = function (targets) {
+    var i,
+        len;
+    for (i = 0, len = targets.length; i &lt; len; i += 1)    {
+        (function (i) {
+            target[i].onclick = function (e) {
+                alert (i);
+            }
+        })(i)
+    }
+}
+</code></pre><p>闭包是个很强大的功能，这里只是对他进行一个简单的介绍，大家需要记住闭包就是有权访问另一个函数作用域中的变量的函数，我们可以用闭包做出很多的功能，更多的知识后面我会补充给大家。</p>
 
       
     </div>
@@ -401,8 +435,8 @@ alert(i);  //10
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/30/垃圾处理机制/" rel="next" title="JavaScript的垃圾回收">
-                <i class="fa fa-chevron-left"></i> JavaScript的垃圾回收
+              <a href="/2017/07/26/作用域/" rel="next" title="学习作用域">
+                <i class="fa fa-chevron-left"></i> 学习作用域
               </a>
             
           </div>
@@ -410,10 +444,6 @@ alert(i);  //10
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/13/闭包/" rel="prev" title="详谈JavaScript中的闭包">
-                详谈JavaScript中的闭包 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -533,7 +563,7 @@ alert(i);  //10
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript的作用域"><span class="nav-number">1.</span> <span class="nav-text">javascript的作用域</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包的定义"><span class="nav-number">1.</span> <span class="nav-text">闭包的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、回顾"><span class="nav-number">1.1.</span> <span class="nav-text">1、回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、使用闭包"><span class="nav-number">1.2.</span> <span class="nav-text">2、使用闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、全局变量-一个糟糕的依赖"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1、全局变量(一个糟糕的依赖)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、拥有自己的私有变量"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2、拥有自己的私有变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、糟糕的例子"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3、糟糕的例子</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
