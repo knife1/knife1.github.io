@@ -92,16 +92,16 @@
 
 
 
-<meta name="description" content="闭包的定义有不少的学习者总是将闭包和匿名函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
+<meta name="description" content="闭包的定义有不少的学习者总是将闭包和自执行函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="详谈JavaScript中的闭包">
 <meta property="og:url" content="http://yoursite.com/2017/08/13/闭包/index.html">
 <meta property="og:site_name" content="web">
-<meta property="og:description" content="闭包的定义有不少的学习者总是将闭包和匿名函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
-<meta property="og:updated_time" content="2017-08-13T13:36:26.561Z">
+<meta property="og:description" content="闭包的定义有不少的学习者总是将闭包和自执行函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
+<meta property="og:updated_time" content="2017-08-14T11:31:13.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详谈JavaScript中的闭包">
-<meta name="twitter:description" content="闭包的定义有不少的学习者总是将闭包和匿名函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
+<meta name="twitter:description" content="闭包的定义有不少的学习者总是将闭包和自执行函数搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数； 1、回顾前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子： function sum () {     var a = 10,">
 
 
 
@@ -341,7 +341,7 @@
       
 
       
-        <h1 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h1><p>有不少的学习者总是将<strong>闭包</strong>和<strong>匿名函数</strong>搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数；</p>
+        <h1 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h1><p>有不少的学习者总是将<strong>闭包</strong>和<strong>自执行函数</strong>搞混，认为匿名函数就是闭包；其实匿名函数是一个概念：有权访问另一个函数作用域中的变量的函数；</p>
 <h2 id="1、回顾"><a href="#1、回顾" class="headerlink" title="1、回顾"></a>1、回顾</h2><p>前面我介绍了垃圾回收和作用域的概念，不清楚的可以看下我前面的文章，当一个函数执行完毕其当前的函数作用域就会释放，为了后面可以访问该函数作用域中的变量，我们将使用闭包，先介绍一个例子：<br></p>
 <pre><code>function sum () {
     var a = 10,
