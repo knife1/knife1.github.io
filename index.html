@@ -253,6 +253,187 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/16/this/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="knife">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="web">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/16/this/" itemprop="url">调皮的this</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T20:01:42+08:00">
+                2017-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/08/16/this/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/08/16/this/" class="cy_cmt_count" data-xid="2017/08/16/this/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/08/16/this/" class="leancloud_visitors" data-flag-title="调皮的this">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>每当我们用到函数对象的时候，总会使用this(this在面向对象编程中非常重要),初学者总是搞混this到底代表的是什么，这总会导致得到和自己想的大相径庭的结果；<br><br>当我们调用一个函数的时候，会暂停当前函数的执行，传递控住权和参数给新函数，除了申明是的形参外，还有传入参数的类数组arguments和<strong>this</strong> ，总共有四种调用模式：1、方法调用模式；2、函数调用模式；3、构造器调用模式；4、apply和call调用模式；他们在如何初始化this上存在差异，大家把这四个搞清楚就能理解this的指向了；</p>
+<h2 id="1、方法调用模式"><a href="#1、方法调用模式" class="headerlink" title="1、方法调用模式"></a>1、方法调用模式</h2><p>说到方法调用，就能想到这个函数作为一个对象的属性，当一个对象的方法被调用的时候，this被绑定到该对象，且this到对象的绑定发生在调用的时候，使得函数可以对this高度复用，this可以访问所属对象，并能获取对象的属性和修改属性,提取属性的方法this.name or this[name]；<br></p>
+<pre><code>var person = {
+    firstName: &quot;James&quot;,
+    lastName: &quot;Chen&quot;,
+    fullName: function() {
+        //this绑定到该对象，可以提取对象的属性进行操作
+        return this.firstName + &quot; &quot; + this.lastName;
+    }
+}
+var fullName = person.fullName  //james chen
+</code></pre><h2 id="2、函数调用模式"><a href="#2、函数调用模式" class="headerlink" title="2、函数调用模式"></a>2、函数调用模式</h2><p>当一个函数并不是一个对象的方法的时候，那么就是被当做一个函数来调用的，此时this被绑定到全局对象window，但是这在语言设计上是一个错误，让内部函数不能帮助外部函数工作，因为内部函数this绑定了错误的值，所以不能共享该方法对对象的访问权。对于这种错误，我们能通过将this赋值给变量来解决；<br></p>
+<pre><code>var person = {
+    fisrtName:　&quot;james&quot;,
+    lastName: &quot;chen&quot;
+}
+person.sayHello = function() {
+    //将this赋值给变量that方便内部函数的调用
+    var that = this;  
+    var say = function() {
+        alert(&quot;hello &quot; + that.firstName + &quot; &quot; + that.lastName + &quot;!&quot;);
+    }
+    say();
+}
+person.sayHello();  //hello james chen!
+</code></pre><p>虽然this绑定到全局对象上，但是我们不需要用传递的参数this而将需要的对象this赋值给变量that，内部函数通过作用域链就能找到外部函数的变量that,在全局定义的函数this都绑定的是全局变量，<em>注意</em>：在计时器中的this被绑定到了全局变量，在使用的时候需要小心；</p>
+<h2 id="3、构造器调用模式"><a href="#3、构造器调用模式" class="headerlink" title="3、构造器调用模式"></a>3、构造器调用模式</h2><p>构造器我介绍创建对象的时候已经讲过一次了，这里只简单回顾一下。JavaScript是一门原型继承的语言，当今大多数语言都是基于类的语言，所以它提供了一套和基于类的语言类似的对象构建的语法。通过在函数前面加一个new调用它，这样会创建一个连接到该函数prototype成员的新对象，this就会被绑定到该对象上；new会改变return的行为，new表达式返回值即使return值。否则返回的是构造函数的函数体形成的对象。</p>
+<pre><code>function Person() {
+    this.firstName = &quot;james&quot;;
+    this.lastName = &quot;chen&quot;
+};
+Person.prototype.sayHello = function(){
+    alert(&quot;hello &quot; + this.firstName + &quot; &quot; + this.lastName);
+}
+var myPerson = new Person();
+</code></pre><h2 id="4、apply和call调用模式"><a href="#4、apply和call调用模式" class="headerlink" title="4、apply和call调用模式"></a>4、apply和call调用模式</h2><p>在JavaScript中函数也可以拥有方法，apply和call基本相似。apply方法让我们传递两个参数，第一个就是我们期望的this的指向，第二个就是存放内部需要使用参数的数组。这样调用后，this就会被绑定到我们指定的对象上；</p>
+<pre><code>var num = [3, 4]
+function add(x, y) {
+    return (x + y);
+}
+var sum = add.apply(null, num);  //7
+</code></pre><p>call方法和apply差别之处就是call传递的第一个参数后面的参数不是数组，而是用’,’隔开传递给内部使用的参数。<br><br>apply方法很有用，我们可以用来处理一些值，如arguments这样的类数组，让它和数组可以进行操作，这里我们将使用Array.prototype.slice()方法；</p>
+<pre><code>var arr1 = [1, 2, 3];
+function arr2() {
+    var arr2 = Array.prototype.slice.apply(arguments);
+    return arr2.contact(arr1);
+}
+arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/13/闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1119,7 +1300,7 @@ Sub.prototype.constructor = Sub;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
