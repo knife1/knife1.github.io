@@ -3,6 +3,122 @@
   
     
     <entry>
+      <title><![CDATA[一个简单的vue金额输入组件]]></title>
+      <url>/2017/10/10/%E9%87%91%E9%A2%9D%E7%BB%84%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><ol>
+<li>该组件可有用户输入金额信息；   </li>
+<li>该组件可限制用户输入的最大值；   </li>
+<li>在输入过程中，自动将输入的数字按千分符分隔的样式显示在当前的输入框中；   </li>
+<li>限制用户在输入小数点后的有效数字为2位；</li>
+<li>该控件的取值仍为数值。 <br></li>
+</ol>
+<p>在这里插入一家公司发的测试题。</p>
+<h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><p>先逐点分析，第一点我使用input框实现输入，第二点选择vue的prop实现使用者能自己规定最大最小值而不是在我的组件中找相关设置，第三点首先想到的当然是通过字符串的拼接实现并且使用oninput事件实现实时操作，第四点很简单加个判断就可以了，第五点，我的理解是只能输入数值，下面进行系统分析。</p>
+<h2 id="1、输入"><a href="#1、输入" class="headerlink" title="1、输入"></a>1、输入</h2><p>我们先解决template部分，首先当然需要一个.vue的文件，我这里取名money.vue，然后创建template标签，大致如下<br></p>
+<pre><code>&lt;template&gt;
+    &lt;div class=&quot;moneyin&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;number&quot; v-on:input= &quot;change&quot;&gt;&lt;span v-if=&quot;flag&quot;&gt;请输入在{{minNumber}}到{{maxNumber}}的金额&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre><p>很明显使用了v-model进行双向绑定，方便对值的控制，oninput事件触发函数为change(在后面的script部分会介绍)，最后用了一个v-if进行判断输出警告信息，template部分就是这么的简单，因为只是一个小的组件，现在进入后面的逻辑分析<br></p>
+<h2 id="2、去除输入框千分号进行数据处理"><a href="#2、去除输入框千分号进行数据处理" class="headerlink" title="2、去除输入框千分号进行数据处理"></a>2、去除输入框千分号进行数据处理</h2><p>对于每次值改变都要从框中取值并处理，这时候我们需要将千分号去除掉才能进行相应的处理，这里就不做详细的介绍，js中很基础的语法，这里的重点不是这个，我直接上代码：</p>
+<pre><code>let num = this.number;
+//将小数部分和整数分开
+let Anum = num.split(&quot;.&quot;);
+      //由于整数部分有逗号所以需要去除逗号
+    let Inum = Anum[0].split(&quot;,&quot;);
+    let numStr = Inum.join(&quot;&quot;);
+    //并将输入的其他非数字去掉，并将f1置为-1
+     if(numStr.search(/[^0-9|\.]/g) !== -1){
+        numStr = numStr.replace(/[^0-9|\.]/g, &quot;&quot;);
+        fl = -1;
+        alert(&apos;请输入数字&apos;);
+      }
+</code></pre><p>其中this.number是输入的金额，f1是光标定位的标志，后面会有介绍；</p>
+<h2 id="3、千分符"><a href="#3、千分符" class="headerlink" title="3、千分符"></a>3、千分符</h2><p>关于如何实现千分符，有很多种方法，可以用数组遍历，还有就是字符串操作(拼接千分号(后面用’,’代表)),在这里我选用字符串，这些方法中数组是最耗费时间的，特别是当数据很大的时候，遍历起来很麻烦，虽然金额很少输入很大，但是能简化就简化，前面两者的时间消耗差不多。<br></p>
+<pre><code>//用来存放结果
+var result = &apos;&apos;,
+//标志位，每三个进行一次处理
+counter = 0;
+for (var i = numStr.length - 1; i &gt;= 0; i--) {
+     counter++;
+     result = numStr.charAt(i) + result;
+//排除整数刚好是三的整数倍时首位出现,的情况
+     if (!(counter % 3) &amp;&amp; i != 0) {
+         result = &apos;,&apos; + result;
+     }
+}
+</code></pre><p><br>采用从整数的末尾开始处理，counter每次增加到3的整数倍，就在拼接前加上一个’,’，这个时候我们要考虑全面，当刚好是3的整数倍长时，整数的首位就会出现’,’当然这并不是我们所期望的，所以在判断counter的时候我们需要加上一个判断，当索引不为0时，才进行处理。<br></p>
+<h2 id="4、结果输出"><a href="#4、结果输出" class="headerlink" title="4、结果输出"></a>4、结果输出</h2><p>结果的输出分两种，一个是有小数，一个是没有小数部分，你也发现我现在还没有对小数进行处理，在这里输出的同时，我对小数也进行相应的处理：<br></p>
+<pre><code>if (Anum[1]) { 
+    if(Anum[1].search(/[^0-9|\.]/g) !== -1){
+        Anum[1] = Anum[1].replace(/[^0-9|\.]/g, &quot;&quot;);
+        f1 = -1;
+        alert(&apos;请输入数字&apos;);
+    }
+    //长度的限制
+   if(Anum[1].length &gt; 2){
+        let dec = Anum[1].split(&apos;&apos;);
+        Anum[1] = dec[0] + dec[1];
+        alert(&quot;小数只能有两位有效数字&quot;);
+   }
+
+    this.number = result + &apos;.&apos; + Anum[1];
+}
+else {
+    this.number = result;
+}
+</code></pre><p>这里很简单就是一个结果的输出和小数的处理，当然有效值的限定没有说清楚规则，我就直接只取小数的前两位，不论你在哪个位置输入。</p>
+<p>##5、输入限制 ##<br>首先我们先进行范围的限制，这里很简单，只需要进行数值的比较大小，我直接上代码：<br></p>
+<pre><code>let resnum = numStr+ &apos;.&apos; + Anum[1]
+let len2 = numStr.length;
+//将输入字符串转为纯数字
+let res = parseFloat(resnum);
+
+if(res &gt; this.maxNumber || res &lt; this.minNumber){
+    //通过控制v-if对提示信息进行显示
+    this.flag = true;
+    }else{
+    this.flag = false;
+}
+</code></pre><p>此时我们的数字都是处理了非法字符的结果，我们将其转为数字和输入进来的范围进行比较，当超出的时候我们就进行警告标志位的取反，实现警告的功能。</p>
+<p>##6、测试##<br>这里我们大致的东西就搭建好了下面是我script标签的前面的内容，方便大家理解<br></p>
+<pre><code>    export default {
+        name:&apos;moneyin&apos;,
+        props:{
+            //对输入限制的最大和最小值进行获取和类型判断
+            maxNumber: {
+                type: Number
+            },
+            minNumber: {
+                type: Number
+            }
+        },
+        data: function(){
+            return {
+                //输入金额
+                number: &apos;&apos;,
+                //警告条件的标志
+                flag: true,
+                //光标的位置
+                CaretPos: 0,
+                //上一次输入金额长度
+                len1: 0,
+                //光标控制的标志
+                index: 0
+            }
+        },
+        methods: {
+                change(e){
+                    ..........
+}
+</code></pre><p>首先我们在想要创建项目的根目录进行初始化操作（vue init webpack-simple my_component）：一路回车，就可以生成项目，当然有些选项自己选择，这里我不多做介绍，网上有很多教程大家可以参考，这里有个我搭建的时候搜的一个参考链接<a href="https://github.com/wangzianangis/my_component" title="搭建vue项目" target="_blank" rel="external">https://github.com/wangzianangis/my_component</a>；<br>最终的代码我会在下一个文章中给出，文章太长了看起来也费尽，后面也会说几个小bug问题的解决，有错误的部分希望大家可以指出。</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[回调、同步、异步、阻塞、非阻塞]]></title>
       <url>/2017/09/27/%E5%9B%9E%E8%B0%83%E3%80%81%E5%90%8C%E6%AD%A5%E3%80%81%E5%BC%82%E6%AD%A5%E3%80%81%E9%98%BB%E5%A1%9E%E3%80%81%E9%9D%9E%E9%98%BB%E5%A1%9E/</url>
       <content type="html"><![CDATA[<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>前几天在看es6的时候发现自己对这几个名词的理解并不清楚，发现身边也在学前端的同学也不了解这个，这个毕竟是重要的概念，在前端中也会出现，我再网上进行了相关的查阅，我在这里插入一段对其进行简单的讲解，了解下总有好处，废话不多说，直接进入正题<br><br>大家都知道jS本身是单线程运行的，不可能在一段代码还未结束运行时去运行别的代码，因此也就不存在异步执行的概念。而实现异步编程的直接体现就是回调，我先说回调函数。</p>
