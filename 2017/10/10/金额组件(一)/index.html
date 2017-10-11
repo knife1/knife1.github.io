@@ -92,16 +92,16 @@
 
 
 
-<meta name="description" content="js中的垃圾回收机制和其他的C、C++之类的语言不同，js具有自动垃圾收集机制，其原理大致是：按照固定的时间间隔周期性的找出那些不需要再使用的的变量，将它所占用的内存释放。例如局部变量，一旦函数结束，局部变量就没有存在必要了，可以释放它们占用的内存。貌似很简单的工作，为什么会有很大开销呢？这仅仅是垃圾回收的冰山一角，就像闭包，貌似函数结束了，其实还没有，垃圾回收器必须知道哪个变量有用，哪个变量没用">
+<meta name="description" content="简要介绍 该组件可有用户输入金额信息；    该组件可限制用户输入的最大值；    在输入过程中，自动将输入的数字按千分符分隔的样式显示在当前的输入框中；    限制用户在输入小数点后的有效数字为2位； 该控件的取值仍为数值。   在这里插入一家公司发的测试题。 基本思路先逐点分析，第一点我使用input框实现输入，第二点选择vue的prop实现使用者能自己规定最大最小值而不是在我的组件中找相关设">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript的垃圾回收">
-<meta property="og:url" content="http://yoursite.com/2017/06/30/垃圾处理机制/index.html">
+<meta property="og:title" content="一个简单的vue金额输入组件(一)">
+<meta property="og:url" content="http://yoursite.com/2017/10/10/金额组件(一)/index.html">
 <meta property="og:site_name" content="web">
-<meta property="og:description" content="js中的垃圾回收机制和其他的C、C++之类的语言不同，js具有自动垃圾收集机制，其原理大致是：按照固定的时间间隔周期性的找出那些不需要再使用的的变量，将它所占用的内存释放。例如局部变量，一旦函数结束，局部变量就没有存在必要了，可以释放它们占用的内存。貌似很简单的工作，为什么会有很大开销呢？这仅仅是垃圾回收的冰山一角，就像闭包，貌似函数结束了，其实还没有，垃圾回收器必须知道哪个变量有用，哪个变量没用">
-<meta property="og:updated_time" content="2017-06-30T14:54:55.069Z">
+<meta property="og:description" content="简要介绍 该组件可有用户输入金额信息；    该组件可限制用户输入的最大值；    在输入过程中，自动将输入的数字按千分符分隔的样式显示在当前的输入框中；    限制用户在输入小数点后的有效数字为2位； 该控件的取值仍为数值。   在这里插入一家公司发的测试题。 基本思路先逐点分析，第一点我使用input框实现输入，第二点选择vue的prop实现使用者能自己规定最大最小值而不是在我的组件中找相关设">
+<meta property="og:updated_time" content="2017-10-11T00:57:52.472Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript的垃圾回收">
-<meta name="twitter:description" content="js中的垃圾回收机制和其他的C、C++之类的语言不同，js具有自动垃圾收集机制，其原理大致是：按照固定的时间间隔周期性的找出那些不需要再使用的的变量，将它所占用的内存释放。例如局部变量，一旦函数结束，局部变量就没有存在必要了，可以释放它们占用的内存。貌似很简单的工作，为什么会有很大开销呢？这仅仅是垃圾回收的冰山一角，就像闭包，貌似函数结束了，其实还没有，垃圾回收器必须知道哪个变量有用，哪个变量没用">
+<meta name="twitter:title" content="一个简单的vue金额输入组件(一)">
+<meta name="twitter:description" content="简要介绍 该组件可有用户输入金额信息；    该组件可限制用户输入的最大值；    在输入过程中，自动将输入的数字按千分符分隔的样式显示在当前的输入框中；    限制用户在输入小数点后的有效数字为2位； 该控件的取值仍为数值。   在这里插入一家公司发的测试题。 基本思路先逐点分析，第一点我使用input框实现输入，第二点选择vue的prop实现使用者能自己规定最大最小值而不是在我的组件中找相关设">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/06/30/垃圾处理机制/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/10/金额组件(一)/"/>
 
 
 
 
 
-  <title>JavaScript的垃圾回收 | web</title>
+  <title>一个简单的vue金额输入组件(一) | web</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +265,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/30/垃圾处理机制/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/10/金额组件(一)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="knife">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript的垃圾回收</h1>
+          <h1 class="post-title" itemprop="name headline">一个简单的vue金额输入组件(一)</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-30T21:35:37+08:00">
-                2017-06-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-10T10:59:17+08:00">
+                2017-10-10
               </time>
             
 
@@ -314,8 +314,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/06/30/垃圾处理机制/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/06/30/垃圾处理机制/" itemprop="commentsCount"></span>
+                <a href="/2017/10/10/金额组件(一)/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/10/10/金额组件(一)/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -323,7 +323,7 @@
 
           
           
-             <span id="/2017/06/30/垃圾处理机制/" class="leancloud_visitors" data-flag-title="JavaScript的垃圾回收">
+             <span id="/2017/10/10/金额组件(一)/" class="leancloud_visitors" data-flag-title="一个简单的vue金额输入组件(一)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,26 +351,115 @@
       
 
       
-        <h1 id="js中的垃圾回收机制"><a href="#js中的垃圾回收机制" class="headerlink" title="js中的垃圾回收机制"></a>js中的垃圾回收机制</h1><p>和其他的C、C++之类的语言不同，js具有自动垃圾收集机制，其原理大致是：按照固定的时间间隔周期性的找出那些不需要再使用的的变量，将它所占用的内存释放。例如局部变量，一旦函数结束，局部变量就没有存在必要了，可以释放它们占用的内存。貌似很简单的工作，为什么会有很大开销呢？这仅仅是垃圾回收的冰山一角，就像闭包，貌似函数结束了，其实还没有，垃圾回收器必须知道哪个变量有用，哪个变量没用，对于不再有用的变量打上标记，以备将来回收。用于标记无用的策略有很多，常见的有两种方式</p>
-<h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>在js中最常用的垃圾收集方式就是<strong>标记清除</strong>，其工作方式是：当一个变量进入环境时，将其标记为<strong>进入环境</strong>（可以使用很多方式来进行标记，例如翻转某个特殊位来记录，或者使用一个“进入环境”的变量列表和“离开环境”的变量列表来跟踪变量的变化），如何标记并不重要，关键是采用什么策略；</p>
-<p>垃圾回收器会在运行的时候给存储在内存中的所有变量加上标记，然后去掉环境中的变量以及被环境中变量所引用的变量，在这些完成之后仍存在标记的就是要删除的变量了，因为环境中的变量已经无法访问到这些变量了，然后垃圾回收器相会这些带有标记的变量机器所占空间；低版本的ie采用第二种垃圾收集策略；</p>
-<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p><strong>引用计数</strong>的含义就是跟踪记录每个值被引用的次数，当声明了一个变量并将一个引用类型赋值给该变量的时候这个值的引用次数就加1，如果该变量的值变成了另外一个，则这个值得引用次数减1，当这个值的引用次数变为0的时候，说明没有变量在使用，这个值没法被访问了，因此可以将其占用的空间回收，这样垃圾回收器会在运行的时候清理掉引用次数为0的值占用的空间。</p>
-<p>很快就遇到了很严重的问题<strong>循环引用</strong>：对象A中包含一个指向对象B的指针，而对象B也包含一个指向对象A的指针，如下所示：</p>
-<pre><code>function test(){
-    var objA = new object();
-    var objB = new object();
-    objA.someObject = objB;
-    objB.anotherObject = objA;
+        <h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><ol>
+<li>该组件可有用户输入金额信息；   </li>
+<li>该组件可限制用户输入的最大值；   </li>
+<li>在输入过程中，自动将输入的数字按千分符分隔的样式显示在当前的输入框中；   </li>
+<li>限制用户在输入小数点后的有效数字为2位；</li>
+<li>该控件的取值仍为数值。 <br></li>
+</ol>
+<p>在这里插入一家公司发的测试题。</p>
+<h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><p>先逐点分析，第一点我使用input框实现输入，第二点选择vue的prop实现使用者能自己规定最大最小值而不是在我的组件中找相关设置，第三点首先想到的当然是通过字符串的拼接实现并且使用oninput事件实现实时操作，第四点很简单加个判断就可以了，第五点，我的理解是只能输入数值，下面进行系统分析。</p>
+<h2 id="1、输入"><a href="#1、输入" class="headerlink" title="1、输入"></a>1、输入</h2><p>我们先解决template部分，首先当然需要一个.vue的文件，我这里取名money.vue，然后创建template标签，大致如下<br></p>
+<pre><code>&lt;template&gt;
+    &lt;div class=&quot;moneyin&quot;&gt;
+        &lt;input type=&quot;text&quot; v-model=&quot;number&quot; v-on:input= &quot;change&quot;&gt;&lt;span v-if=&quot;flag&quot;&gt;请输入在{{minNumber}}到{{maxNumber}}的金额&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre><p>很明显使用了v-model进行双向绑定，方便对值的控制，oninput事件触发函数为change(在后面的script部分会介绍)，最后用了一个v-if进行判断输出警告信息，template部分就是这么的简单，因为只是一个小的组件，现在进入后面的逻辑分析<br></p>
+<h2 id="2、去除输入框千分号进行数据处理"><a href="#2、去除输入框千分号进行数据处理" class="headerlink" title="2、去除输入框千分号进行数据处理"></a>2、去除输入框千分号进行数据处理</h2><p>对于每次值改变都要从框中取值并处理，这时候我们需要将千分号去除掉才能进行相应的处理，这里就不做详细的介绍，js中很基础的语法，这里的重点不是这个，我直接上代码：</p>
+<pre><code>let num = this.number;
+//将小数部分和整数分开
+let Anum = num.split(&quot;.&quot;);
+      //由于整数部分有逗号所以需要去除逗号
+    let Inum = Anum[0].split(&quot;,&quot;);
+    let numStr = Inum.join(&quot;&quot;);
+    //并将输入的其他非数字去掉，并将f1置为-1
+     if(numStr.search(/[^0-9|\.]/g) !== -1){
+        numStr = numStr.replace(/[^0-9|\.]/g, &quot;&quot;);
+        fl = -1;
+        alert(&apos;请输入数字&apos;);
+      }
+</code></pre><p>其中this.number是输入的金额，f1是光标定位的标志，后面会有介绍；</p>
+<h2 id="3、千分符"><a href="#3、千分符" class="headerlink" title="3、千分符"></a>3、千分符</h2><p>关于如何实现千分符，有很多种方法，可以用数组遍历，还有就是字符串操作(拼接千分号(后面用’,’代表)),在这里我选用字符串，这些方法中数组是最耗费时间的，特别是当数据很大的时候，遍历起来很麻烦，虽然金额很少输入很大，但是能简化就简化，前面两者的时间消耗差不多。<br></p>
+<pre><code>//用来存放结果
+var result = &apos;&apos;,
+//标志位，每三个进行一次处理
+counter = 0;
+for (var i = numStr.length - 1; i &gt;= 0; i--) {
+     counter++;
+     result = numStr.charAt(i) + result;
+//排除整数刚好是三的整数倍时首位出现,的情况
+     if (!(counter % 3) &amp;&amp; i != 0) {
+         result = &apos;,&apos; + result;
+     }
 }
-</code></pre><p>上面的两个对象通过各自的属性相互引用（次数都是2）；在标记清除的策略中没问题，在引用计数时，函数执行完毕后，两个对象仍然继续存在，因为他们的次数永远不为0；大家都知道，IE中有一部分对象并不是原生js对象，COM对象（BOM和DOM）就是采用引用计数，所以在IE中涉及到COM对象就存在循环引用问题，如下：</p>
-<pre><code>var    element = document.getElementById(&quot;element&quot;);
-var obj = {};
-element.obj1 = obj;
-obj.element = elememt;
-</code></pre><p>既然出现了问题就会有相应的解决方法，最好是在不使用它们的时候手动断开原生js对象与DOM对象之间的连接，如下：</p>
-<pre><code>element.obj1 = null;
-obj.element = null;
-</code></pre>
+</code></pre><p><br>采用从整数的末尾开始处理，counter每次增加到3的整数倍，就在拼接前加上一个’,’，这个时候我们要考虑全面，当刚好是3的整数倍长时，整数的首位就会出现’,’当然这并不是我们所期望的，所以在判断counter的时候我们需要加上一个判断，当索引不为0时，才进行处理。<br></p>
+<h2 id="4、结果输出"><a href="#4、结果输出" class="headerlink" title="4、结果输出"></a>4、结果输出</h2><p>结果的输出分两种，一个是有小数，一个是没有小数部分，你也发现我现在还没有对小数进行处理，在这里输出的同时，我对小数也进行相应的处理：<br></p>
+<pre><code>if (Anum[1]) { 
+    if(Anum[1].search(/[^0-9|\.]/g) !== -1){
+        Anum[1] = Anum[1].replace(/[^0-9|\.]/g, &quot;&quot;);
+        fl = -1;
+        alert(&apos;请输入数字&apos;);
+    }
+    //长度的限制
+   if(Anum[1].length &gt; 2){
+        let dec = Anum[1].split(&apos;&apos;);
+        Anum[1] = dec[0] + dec[1];
+        alert(&quot;小数只能有两位有效数字&quot;);
+   }
+
+    this.number = result + &apos;.&apos; + Anum[1];
+}
+else {
+    this.number = result;
+}
+</code></pre><p>这里很简单就是一个结果的输出和小数的处理，当然有效值的限定没有说清楚规则，我就直接只取小数的前两位，不论你在哪个位置输入。</p>
+<p>##5、输入限制 ##<br>首先我们先进行范围的限制，这里很简单，只需要进行数值的比较大小，我直接上代码：<br></p>
+<pre><code>let resnum = numStr+ &apos;.&apos; + Anum[1]
+let len2 = numStr.length;
+//将输入字符串转为纯数字
+let res = parseFloat(resnum);
+
+if(res &gt; this.maxNumber || res &lt; this.minNumber){
+    //通过控制v-if对提示信息进行显示
+    this.flag = true;
+    }else{
+    this.flag = false;
+}
+</code></pre><p>此时我们的数字都是处理了非法字符的结果，我们将其转为数字和输入进来的范围进行比较，当超出的时候我们就进行警告标志位的取反，实现警告的功能。</p>
+<p>##6、测试##<br>这里我们大致的东西就搭建好了下面是我script标签的前面的内容，方便大家理解<br></p>
+<pre><code>    export default {
+        name:&apos;moneyin&apos;,
+        props:{
+            //对输入限制的最大和最小值进行获取和类型判断
+            maxNumber: {
+                type: Number
+            },
+            minNumber: {
+                type: Number
+            }
+        },
+        data: function(){
+            return {
+                //输入金额
+                number: &apos;&apos;,
+                //警告条件的标志
+                flag: true,
+                //光标的位置
+                CaretPos: 0,
+                //上一次输入金额长度
+                len1: 0,
+                //光标控制的标志
+                index: 0
+            }
+        },
+        methods: {
+                change(e){
+                    ..........
+}
+</code></pre><p>首先我们在想要创建项目的根目录进行初始化操作（vue init webpack-simple my_component）：一路回车，就可以生成项目，当然有些选项自己选择，这里我不多做介绍，网上有很多教程大家可以参考，这里有个我搭建的时候搜的一个参考链接<a href="https://github.com/wangzianangis/my_component" title="搭建vue项目" target="_blank" rel="external">https://github.com/wangzianangis/my_component</a>；<br>最终的代码我会在下一个文章中给出，文章太长了看起来也费尽，后面也会说几个小bug问题的解决，有错误的部分希望大家可以指出。</p>
+
       
     </div>
 
@@ -406,8 +495,8 @@ obj.element = null;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/15/对象的简介/" rel="next" title="JavaScript中的对象">
-                <i class="fa fa-chevron-left"></i> JavaScript中的对象
+              <a href="/2017/10/10/金额组件(二)/" rel="next" title="一个简单的vue金额输入组件（二）">
+                <i class="fa fa-chevron-left"></i> 一个简单的vue金额输入组件（二）
               </a>
             
           </div>
@@ -415,10 +504,6 @@ obj.element = null;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/26/作用域/" rel="prev" title="学习作用域">
-                学习作用域 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -538,7 +623,7 @@ obj.element = null;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#js中的垃圾回收机制"><span class="nav-number">1.</span> <span class="nav-text">js中的垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标记清除"><span class="nav-number">1.1.</span> <span class="nav-text">标记清除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数"><span class="nav-number">1.2.</span> <span class="nav-text">引用计数</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简要介绍"><span class="nav-number">1.</span> <span class="nav-text">简要介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本思路"><span class="nav-number">2.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、输入"><span class="nav-number">2.1.</span> <span class="nav-text">1、输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、去除输入框千分号进行数据处理"><span class="nav-number">2.2.</span> <span class="nav-text">2、去除输入框千分号进行数据处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、千分符"><span class="nav-number">2.3.</span> <span class="nav-text">3、千分符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、结果输出"><span class="nav-number">2.4.</span> <span class="nav-text">4、结果输出</span></a></li></ol></li></ol></div>
             
 
           </div>
