@@ -98,7 +98,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/10/金额组件(一)/index.html">
 <meta property="og:site_name" content="web">
 <meta property="og:description" content="简要介绍 该组件可有用户输入金额信息；    该组件可限制用户输入的最大值；    在输入过程中，自动将输入的数字按千分符分隔的样式显示在当前的输入框中；    限制用户在输入小数点后的有效数字为2位； 该控件的取值仍为数值。   在这里插入一家公司发的测试题。 基本思路先逐点分析，第一点我使用input框实现输入，第二点选择vue的prop实现使用者能自己规定最大最小值而不是在我的组件中找相关设">
-<meta property="og:updated_time" content="2017-10-11T01:28:00.305Z">
+<meta property="og:updated_time" content="2017-10-11T14:05:50.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个简单的vue金额输入组件(一)">
 <meta name="twitter:description" content="简要介绍 该组件可有用户输入金额信息；    该组件可限制用户输入的最大值；    在输入过程中，自动将输入的数字按千分符分隔的样式显示在当前的输入框中；    限制用户在输入小数点后的有效数字为2位； 该控件的取值仍为数值。   在这里插入一家公司发的测试题。 基本思路先逐点分析，第一点我使用input框实现输入，第二点选择vue的prop实现使用者能自己规定最大最小值而不是在我的组件中找相关设">
@@ -415,7 +415,7 @@ else {
     this.number = result;
 }
 </code></pre><p>这里很简单就是一个结果的输出和小数的处理，当然有效值的限定没有说清楚规则，我就直接只取小数的前两位，不论你在哪个位置输入。</p>
-<p>##5、输入限制 ##<br>首先我们先进行范围的限制，这里很简单，只需要进行数值的比较大小，我直接上代码：<br></p>
+<h2 id="5、输入限制"><a href="#5、输入限制" class="headerlink" title="5、输入限制"></a>5、输入限制</h2><p>首先我们先进行范围的限制，这里很简单，只需要进行数值的比较大小，我直接上代码：<br></p>
 <pre><code>let resnum = numStr+ &apos;.&apos; + Anum[1]
 let len2 = numStr.length;
 //将输入字符串转为纯数字
@@ -428,7 +428,7 @@ if(res &gt; this.maxNumber || res &lt; this.minNumber){
     this.flag = false;
 }
 </code></pre><p>此时我们的数字都是处理了非法字符的结果，我们将其转为数字和输入进来的范围进行比较，当超出的时候我们就进行警告标志位的取反，实现警告的功能。</p>
-<p>##6、测试##<br>这里我们大致的东西就搭建好了下面是我script标签的前面的内容，方便大家理解<br></p>
+<h2 id="6、测试"><a href="#6、测试" class="headerlink" title="6、测试"></a>6、测试</h2><p>这里我们大致的东西就搭建好了下面是我script标签的前面的内容，方便大家理解<br></p>
 <pre><code>    export default {
         name:&apos;moneyin&apos;,
         props:{
@@ -627,7 +627,7 @@ if(res &gt; this.maxNumber || res &lt; this.minNumber){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简要介绍"><span class="nav-number">1.</span> <span class="nav-text">简要介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本思路"><span class="nav-number">2.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、输入"><span class="nav-number">2.1.</span> <span class="nav-text">1、输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、去除输入框千分号进行数据处理"><span class="nav-number">2.2.</span> <span class="nav-text">2、去除输入框千分号进行数据处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、千分符"><span class="nav-number">2.3.</span> <span class="nav-text">3、千分符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、结果输出"><span class="nav-number">2.4.</span> <span class="nav-text">4、结果输出</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简要介绍"><span class="nav-number">1.</span> <span class="nav-text">简要介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本思路"><span class="nav-number">2.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、输入"><span class="nav-number">2.1.</span> <span class="nav-text">1、输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、去除输入框千分号进行数据处理"><span class="nav-number">2.2.</span> <span class="nav-text">2、去除输入框千分号进行数据处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、千分符"><span class="nav-number">2.3.</span> <span class="nav-text">3、千分符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、结果输出"><span class="nav-number">2.4.</span> <span class="nav-text">4、结果输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、输入限制"><span class="nav-number">2.5.</span> <span class="nav-text">5、输入限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、测试"><span class="nav-number">2.6.</span> <span class="nav-text">6、测试</span></a></li></ol></li></ol></div>
             
 
           </div>
