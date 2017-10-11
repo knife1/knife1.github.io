@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-11T01:14:14.152Z</updated>
+  <updated>2017-10-11T01:19:16.140Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/10/11/vue%E9%87%91%E9%A2%9D%E7%BB%84%E4%BB%B6(%E4%BA%8C)/"/>
     <id>http://yoursite.com/2017/10/11/vue金额组件(二)/</id>
     <published>2017-10-11T01:13:46.000Z</published>
-    <updated>2017-10-11T01:14:14.152Z</updated>
+    <updated>2017-10-11T01:19:16.140Z</updated>
     
     <content type="html"><![CDATA[<h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>上一个文章是该组件的简单完成，其中的bug有很多，这里我将一个一个解决，当然不是做到很完美的样子，至少达到看起来能用，不会出现很无脑的地方。</p>
 <h1 id="bug介绍"><a href="#bug介绍" class="headerlink" title="bug介绍"></a>bug介绍</h1><p>相信看了上个文章的人都知道，我对小数部分的处理很简略，所以这里出现了bug：在末尾输入小数点，死活没反应，然后在中间输入小数点的时候不显示（输入法原因）也不提醒，当然最大的bug就是光标问题，第一个文章我也说了光标但是我没介绍，这里我会说对光标处理的原因。</p>
