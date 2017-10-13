@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-11T14:05:22.701Z</updated>
+  <updated>2017-10-13T01:40:11.119Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>事件循环</title>
+    <link href="http://yoursite.com/2017/10/13/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"/>
+    <id>http://yoursite.com/2017/10/13/事件循环/</id>
+    <published>2017-10-13T01:40:03.000Z</published>
+    <updated>2017-10-13T01:40:11.119Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在前面讲回调函数的时候，我提过事件循环机制(有对同步异步、阻塞和非阻塞感兴趣的可以去看下，写的很通俗易懂，适合入门了解)，这个概念我也是在看网上知识点的时候看到别人提及到的，查了下资料，将我看的心得写下来，顺便整理下自己的思绪；<br></p>
+<h2 id="进入事件循环"><a href="#进入事件循环" class="headerlink" title="进入事件循环"></a>进入事件循环</h2><p>什么是事件循环，看到还是懵逼的，我先写两个例子将它的存在指出来：</p>
+<pre><code>setTimeout(() =&gt; {
+    console.log(&quot;异步处理&quot;);
+}, 1000);
+console.log(&apos;javascript end&apos;);
+//&apos;javascript end&apos;
+//&quot;异步处理&quot;
+</code></pre><p>第一个很简单，输出顺序如上，这个大家一看就知道，其实运行就是借助事件循环实现的，下面的例子会让你理解的更深刻：</p>
+<pre><code>setTimeout(() =&gt; {
+    console.log(&quot;异步处理&quot;);
+}, 0);
+console.log(&apos;javascript end&apos;);
+</code></pre><p>这个我就改了setTimeout的延迟时间，相当于没延迟，但是输出结果和第一个是相同的，大家肯定要想这个还是可以理解，因为你就算延迟为0，也相当于延迟了，在计算你延迟的时候我都进行到了下个代码，当然要执行了当前的语句在执行你，那我在后面多加很多的输出语句，在来看结果：</p>
+<pre><code>function heavyCompute(n) {
+    var count = 0,
+        i, j;
+
+    for (i = n; i &gt; 0; --i) {
+        for (j = n; j &gt; 0; --j) {
+            count += 1;
+        }
+    }
+}
+
+var t = new Date();
+
+setTimeout(function() {
+    console.log(new Date() - t);
+}, 1000);
+heavyCompute(50000);
+</code></pre><p>这个输出按照上面那么理解，就算不是1000，你多执行一个代码行，也只能加多少，忽略不计吧，但是事实却并非如此，他的执行在不同的浏览器和电脑中运行结果不会完全的相同，而且也不是很接近1000，这又是为什么？这就是事件处理机制导致的，有了上面三个案例的引入，相信已经对事件处理机制有了一定的认同了，要钻牛角尖的朋友，我也没办法了，大家可以去网上查更能理解这个的案例参考吧；</p>
+<h2 id="事件循环的运行机制"><a href="#事件循环的运行机制" class="headerlink" title="事件循环的运行机制"></a>事件循环的运行机制</h2><p>事件循环机制是怎么运行的呢？有了上面的讲解，大家应该有点猜到了，第二案例的代码在setTimeout后面无论加了多少代码都会执行了才会打印其内部的输出；事件循环可以解释为：将同步任务放在执行栈中执行，而碰到异步就放在任务队列中，等到执行栈执行完毕之后再去执行任务队列之中的事件。但是只了解这个对理解一个概念显得有点枯燥。</p>
+<h3 id="执行栈和任务队列"><a href="#执行栈和任务队列" class="headerlink" title="执行栈和任务队列"></a>执行栈和任务队列</h3><p>js有一个主进程和执行栈，当在对一个执行栈中的工作进行处理的时候，其他的工作就会等着，比如在遇到一些异步操作如setTimeout的时候，就会交给浏览器的其他模块进行处理（webkit是webcore模块），当异步处理完成时，就会把回调函数放在任务队列中等待执行栈的执行完毕，同时不同的异步处理的任务队列是不同的，当执行栈没有工作的时候，就会去执行任务队列中的回调函数。</p>
+<h3 id="setTiemout"><a href="#setTiemout" class="headerlink" title="setTiemout"></a>setTiemout</h3><p>对又是它，因为它的代码简单方便大家理解，先写出例子，然后一步一步的讲解，光看原理太枯燥了：</p>
+<pre><code>console.log(&apos;Hi&apos;);
+setTimeout(() =&gt; {
+    console.log(&quot;异步处理&quot;);
+}, 1000);
+console.log(&apos;javascript end&apos;);
+</code></pre><p>还是这个例子，加了第一行的代码，就这个给大家讲解事件循环机制下是怎么执行setTimeout的。<br>第一、js是从上到下单线程的，所以首先会遇到console.log(‘Hi’);这个代码会立即执行并输出Hi；<br><br>第二、js会遇到setTimeout，执行栈会将setTimeout提交到模块中进行延时处理；<br><br>第三、此时接着执行栈接着往下执行，此时又遇到console.log();将其中的内容输出了；<br><br>第四、当模块中的延时执行到时间过后，就会将其放在任务队列中，等待执行栈空闲；<br><br>第五、等到执行栈执行完毕后，执行引擎就会查询任务队列是否有回调函数，然后执行输出setTimeout的内部代码，执行结束在退出执行栈，又会再次检查任务队列是否有回调函数；</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>事件循环的基本理解就是这样，希望大家能自己一步一步的分析，这样对原理的理解才能深刻，但是真的就只有这些吗？当然不是，对于不同异步处理的函数，他们放在不同的模块中，那他们是否有执行的顺序（两个异步都在任务队列中），看下面的代码，大家可以自己思考下，后面的文章中我会接着进行介绍（我也去补下课先）。</p>
+<pre><code>const test = () =&gt; {
+    setTimeout(() =&gt; { console.log(5) }, 0);
+    new Promise((resolve, reject) =&gt; {
+        console.log(1);
+        for (var i = 0; i &lt; 10000; i++) {
+            i == 9999 &amp;&amp; resolve();
+        }
+        console.log(2);
+    }).then(function() {
+        console.log(4);
+    }).catch(() =&gt; {
+        console.log(&apos;error&apos;);
+    });
+    console.log(3);
+}
+test();
+</code></pre><p><br>结果是什么呢，大家可以试着思考下，当然直接用node编辑出答案对自己是没有任何帮助的，如果文章有出错的地方，或者有更好的建议，还是想互相交流学习，欢迎联系我，联系方式：<a href="https://knife1.github.io/about/" title="联系方式" target="_blank" rel="external">https://knife1.github.io/about/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;事件循环&quot;&gt;&lt;a href=&quot;#事件循环&quot; class=&quot;headerlink&quot; title=&quot;事件循环&quot;&gt;&lt;/a&gt;事件循环&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>一个简单的vue金额输入组件（二）</title>
