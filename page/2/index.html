@@ -92,16 +92,12 @@
 
 
 
-<meta name="description" content="简要介绍每当我们用到函数对象的时候，总会使用this(this在面向对象编程中非常重要),初学者总是搞混this到底代表的是什么，这总会导致得到和自己想的大相径庭的结果；当我们调用一个函数的时候，会暂停当前函数的执行，传递控住权和参数给新函数，除了申明是的形参外，还有传入参数的类数组arguments和this ，总共有四种调用模式：1、方法调用模式；2、函数调用模式；3、构造器调用模式；4、ap">
-<meta property="og:type" content="article">
-<meta property="og:title" content="调皮的this">
-<meta property="og:url" content="http://yoursite.com/2017/08/16/this/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="web">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="web">
-<meta property="og:description" content="简要介绍每当我们用到函数对象的时候，总会使用this(this在面向对象编程中非常重要),初学者总是搞混this到底代表的是什么，这总会导致得到和自己想的大相径庭的结果；当我们调用一个函数的时候，会暂停当前函数的执行，传递控住权和参数给新函数，除了申明是的形参外，还有传入参数的类数组arguments和this ，总共有四种调用模式：1、方法调用模式；2、函数调用模式；3、构造器调用模式；4、ap">
-<meta property="og:updated_time" content="2017-08-16T11:59:36.853Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="调皮的this">
-<meta name="twitter:description" content="简要介绍每当我们用到函数对象的时候，总会使用this(this在面向对象编程中非常重要),初学者总是搞混this到底代表的是什么，这总会导致得到和自己想的大相径庭的结果；当我们调用一个函数的时候，会暂停当前函数的执行，传递控住权和参数给新函数，除了申明是的形参外，还有传入参数的类数组arguments和this ，总共有四种调用模式：1、方法调用模式；2、函数调用模式；3、构造器调用模式；4、ap">
+<meta name="twitter:title" content="web">
 
 
 
@@ -129,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/16/this/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
 
 
-  <title>调皮的this | web</title>
+  <title>web</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -161,7 +157,9 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,9 +252,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -265,7 +263,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/16/this/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/20/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="knife">
@@ -282,7 +280,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">调皮的this</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/20/hello-world/" itemprop="url">Hello World</a></h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T20:01:42+08:00">
-                2017-08-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T19:15:39+08:00">
+                2017-05-20
               </time>
             
 
@@ -314,8 +314,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/08/16/this/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/08/16/this/" itemprop="commentsCount"></span>
+                <a href="/2017/05/20/hello-world/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/2017/05/20/hello-world/" class="cy_cmt_count" data-xid="2017/05/20/hello-world/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -323,7 +323,7 @@
 
           
           
-             <span id="/2017/08/16/this/" class="leancloud_visitors" data-flag-title="调皮的this">
+             <span id="/2017/05/20/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,76 +351,32 @@
       
 
       
-        <h1 id="简要介绍"><a href="#简要介绍" class="headerlink" title="简要介绍"></a>简要介绍</h1><p>每当我们用到函数对象的时候，总会使用this(this在面向对象编程中非常重要),初学者总是搞混this到底代表的是什么，这总会导致得到和自己想的大相径庭的结果；<br><br>当我们调用一个函数的时候，会暂停当前函数的执行，传递控住权和参数给新函数，除了申明是的形参外，还有传入参数的类数组arguments和<strong>this</strong> ，总共有四种调用模式：1、方法调用模式；2、函数调用模式；3、构造器调用模式；4、apply和call调用模式；他们在如何初始化this上存在差异，大家把这四个搞清楚就能理解this的指向了；</p>
-<h2 id="1、方法调用模式"><a href="#1、方法调用模式" class="headerlink" title="1、方法调用模式"></a>1、方法调用模式</h2><p>说到方法调用，就能想到这个函数作为一个对象的属性，当一个对象的方法被调用的时候，this被绑定到该对象，且this到对象的绑定发生在调用的时候，使得函数可以对this高度复用，this可以访问所属对象，并能获取对象的属性和修改属性,提取属性的方法this.name or this[name]；<br></p>
-<pre><code>var person = {
-    firstName: &quot;James&quot;,
-    lastName: &quot;Chen&quot;,
-    fullName: function() {
-        //this绑定到该对象，可以提取对象的属性进行操作
-        return this.firstName + &quot; &quot; + this.lastName;
-    }
-}
-var fullName = person.fullName  //james chen
-</code></pre><h2 id="2、函数调用模式"><a href="#2、函数调用模式" class="headerlink" title="2、函数调用模式"></a>2、函数调用模式</h2><p>当一个函数并不是一个对象的方法的时候，那么就是被当做一个函数来调用的，此时this被绑定到全局对象window，但是这在语言设计上是一个错误，让内部函数不能帮助外部函数工作，因为内部函数this绑定了错误的值，所以不能共享该方法对对象的访问权。对于这种错误，我们能通过将this赋值给变量来解决；<br></p>
-<pre><code>var person = {
-    fisrtName:　&quot;james&quot;,
-    lastName: &quot;chen&quot;
-}
-person.sayHello = function() {
-    //将this赋值给变量that方便内部函数的调用
-    var that = this;  
-    var say = function() {
-        alert(&quot;hello &quot; + that.firstName + &quot; &quot; + that.lastName + &quot;!&quot;);
-    }
-    say();
-}
-person.sayHello();  //hello james chen!
-</code></pre><p>虽然this绑定到全局对象上，但是我们不需要用传递的参数this而将需要的对象this赋值给变量that，内部函数通过作用域链就能找到外部函数的变量that,在全局定义的函数this都绑定的是全局变量，<em>注意</em>：在计时器中的this被绑定到了全局变量，在使用的时候需要小心；</p>
-<h2 id="3、构造器调用模式"><a href="#3、构造器调用模式" class="headerlink" title="3、构造器调用模式"></a>3、构造器调用模式</h2><p>构造器我介绍创建对象的时候已经讲过一次了，这里只简单回顾一下。JavaScript是一门原型继承的语言，当今大多数语言都是基于类的语言，所以它提供了一套和基于类的语言类似的对象构建的语法。通过在函数前面加一个new调用它，这样会创建一个连接到该函数prototype成员的新对象，this就会被绑定到该对象上；new会改变return的行为，new表达式返回值即使return值。否则返回的是构造函数的函数体形成的对象。</p>
-<pre><code>function Person() {
-    this.firstName = &quot;james&quot;;
-    this.lastName = &quot;chen&quot;
-};
-Person.prototype.sayHello = function(){
-    alert(&quot;hello &quot; + this.firstName + &quot; &quot; + this.lastName);
-}
-var myPerson = new Person();
-</code></pre><h2 id="4、apply和call调用模式"><a href="#4、apply和call调用模式" class="headerlink" title="4、apply和call调用模式"></a>4、apply和call调用模式</h2><p>在JavaScript中函数也可以拥有方法，apply和call基本相似。apply方法让我们传递两个参数，第一个就是我们期望的this的指向，第二个就是存放内部需要使用参数的数组。这样调用后，this就会被绑定到我们指定的对象上；</p>
-<pre><code>var num = [3, 4]
-function add(x, y) {
-    return (x + y);
-}
-var sum = add.apply(null, num);  //7
-</code></pre><p>call方法和apply差别之处就是call传递的第一个参数后面的参数不是数组，而是用’,’隔开传递给内部使用的参数。<br><br>apply方法很有用，我们可以用来处理一些值，如arguments这样的类数组，让它和数组可以进行操作，这里我们将使用Array.prototype.slice()方法；</p>
-<pre><code>var arr1 = [1, 2, 3];
-function arr2() {
-    var arr2 = Array.prototype.slice.apply(arguments);
-    return arr2.contact(arr1);
-}
-arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
-</code></pre>
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+          
+        
       
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
       
-        
-
-      
     </div>
 
     <div>
-      
-        
-
       
     </div>
 
@@ -428,42 +384,25 @@ arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
       
 
       
-        
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/08/13/闭包/" rel="next" title="详谈JavaScript中的闭包">
-                <i class="fa fa-chevron-left"></i> 详谈JavaScript中的闭包
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/27/回调、同步、异步、阻塞、非阻塞/" rel="prev" title="回调、同步、异步、阻塞、非阻塞">
-                回调、同步、异步、阻塞、非阻塞 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -471,12 +410,6 @@ arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="SOHUCS"></div>
-    
-  </div>
-
 
         </div>
         
@@ -496,17 +429,8 @@ arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -557,22 +481,6 @@ arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简要介绍"><span class="nav-number">1.</span> <span class="nav-text">简要介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、方法调用模式"><span class="nav-number">1.1.</span> <span class="nav-text">1、方法调用模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、函数调用模式"><span class="nav-number">1.2.</span> <span class="nav-text">2、函数调用模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、构造器调用模式"><span class="nav-number">1.3.</span> <span class="nav-text">3、构造器调用模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、apply和call调用模式"><span class="nav-number">1.4.</span> <span class="nav-text">4、apply和call调用模式</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -686,10 +594,6 @@ arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
 
   
 
@@ -730,18 +634,7 @@ arr2([4, 5, 6]);  //[1, 2, 3, 4, 5, 6]
 
 
   
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cyt1UNeM2';
-      var conf = 'db97c5c8bed34f4306423eac27be6a27';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyt1UNeM2"></script>
   
 
 
