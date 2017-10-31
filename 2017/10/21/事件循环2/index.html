@@ -92,16 +92,19 @@
 
 
 
-<meta name="description" content="事件循环简介在前面讲回调函数的时候，我提过事件循环机制(有对同步异步、阻塞和非阻塞感兴趣的可以去看下，写的很通俗易懂，适合入门了解)，这个概念我也是在看网上知识点的时候看到别人提及到的，查了下资料，将我看的心得写下来，顺便整理下自己的思绪； 进入事件循环什么是事件循环，看到还是懵逼的，我先写两个例子将它的存在指出来： setTimeout(() =&amp;gt; {     console.log(&amp;q">
+<meta name="description" content="回顾事件循环简单点解释就是js执行会有一个执行栈和任务队列，相关浏览器也会提供模块处理异步函数，当执行栈遇到异步函数的时候就会将其推入相应的模块中进行处理，执行栈会继续执行代码，当模块中的异步函数处理完了的时候就会把他的回调函数放在对应的任务队列中等待执行栈的空闲，当执行栈代码执行完毕后就会到任务队列中看有没回调函数，有则执行，执行完毕后继续查询任务队列中是否有回调函数。那么遇到两个不同的异步处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件循环">
-<meta property="og:url" content="http://yoursite.com/2017/10/13/事件循环/index.html">
+<meta property="og:title" content="继续事件循环">
+<meta property="og:url" content="http://yoursite.com/2017/10/21/事件循环2/index.html">
 <meta property="og:site_name" content="web">
-<meta property="og:description" content="事件循环简介在前面讲回调函数的时候，我提过事件循环机制(有对同步异步、阻塞和非阻塞感兴趣的可以去看下，写的很通俗易懂，适合入门了解)，这个概念我也是在看网上知识点的时候看到别人提及到的，查了下资料，将我看的心得写下来，顺便整理下自己的思绪； 进入事件循环什么是事件循环，看到还是懵逼的，我先写两个例子将它的存在指出来： setTimeout(() =&amp;gt; {     console.log(&amp;q">
-<meta property="og:updated_time" content="2017-10-13T01:40:11.119Z">
+<meta property="og:description" content="回顾事件循环简单点解释就是js执行会有一个执行栈和任务队列，相关浏览器也会提供模块处理异步函数，当执行栈遇到异步函数的时候就会将其推入相应的模块中进行处理，执行栈会继续执行代码，当模块中的异步函数处理完了的时候就会把他的回调函数放在对应的任务队列中等待执行栈的空闲，当执行栈代码执行完毕后就会到任务队列中看有没回调函数，有则执行，执行完毕后继续查询任务队列中是否有回调函数。那么遇到两个不同的异步处理">
+<meta property="og:image" content="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1509437576&di=58048daa75d4ce0494e994dfc51470cf&src=http://p.nanrenwo.net/uploads/allimg/170301/8472-1F301100004-51.jpg">
+<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892581912,2763988797&fm=27&gp=0.jpg">
+<meta property="og:updated_time" content="2017-10-31T08:36:00.939Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件循环">
-<meta name="twitter:description" content="事件循环简介在前面讲回调函数的时候，我提过事件循环机制(有对同步异步、阻塞和非阻塞感兴趣的可以去看下，写的很通俗易懂，适合入门了解)，这个概念我也是在看网上知识点的时候看到别人提及到的，查了下资料，将我看的心得写下来，顺便整理下自己的思绪； 进入事件循环什么是事件循环，看到还是懵逼的，我先写两个例子将它的存在指出来： setTimeout(() =&amp;gt; {     console.log(&amp;q">
+<meta name="twitter:title" content="继续事件循环">
+<meta name="twitter:description" content="回顾事件循环简单点解释就是js执行会有一个执行栈和任务队列，相关浏览器也会提供模块处理异步函数，当执行栈遇到异步函数的时候就会将其推入相应的模块中进行处理，执行栈会继续执行代码，当模块中的异步函数处理完了的时候就会把他的回调函数放在对应的任务队列中等待执行栈的空闲，当执行栈代码执行完毕后就会到任务队列中看有没回调函数，有则执行，执行完毕后继续查询任务队列中是否有回调函数。那么遇到两个不同的异步处理">
+<meta name="twitter:image" content="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1509437576&di=58048daa75d4ce0494e994dfc51470cf&src=http://p.nanrenwo.net/uploads/allimg/170301/8472-1F301100004-51.jpg">
 
 
 
@@ -129,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/13/事件循环/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/21/事件循环2/"/>
 
 
 
 
 
-  <title>事件循环 | web</title>
+  <title>继续事件循环 | web</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/13/事件循环/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/21/事件循环2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="knife">
@@ -282,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">事件循环</h1>
+          <h1 class="post-title" itemprop="name headline">继续事件循环</h1>
         
 
         <div class="post-meta">
@@ -294,8 +297,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-13T09:40:03+08:00">
-                2017-10-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-21T09:40:03+08:00">
+                2017-10-21
               </time>
             
 
@@ -314,8 +317,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/10/13/事件循环/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/10/13/事件循环/" itemprop="commentsCount"></span>
+                <a href="/2017/10/21/事件循环2/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/10/21/事件循环2/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -323,7 +326,7 @@
 
           
           
-             <span id="/2017/10/13/事件循环/" class="leancloud_visitors" data-flag-title="事件循环">
+             <span id="/2017/10/21/事件循环2/" class="leancloud_visitors" data-flag-title="继续事件循环">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -351,48 +354,8 @@
       
 
       
-        <h1 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在前面讲回调函数的时候，我提过事件循环机制(有对同步异步、阻塞和非阻塞感兴趣的可以去看下，写的很通俗易懂，适合入门了解)，这个概念我也是在看网上知识点的时候看到别人提及到的，查了下资料，将我看的心得写下来，顺便整理下自己的思绪；<br></p>
-<h2 id="进入事件循环"><a href="#进入事件循环" class="headerlink" title="进入事件循环"></a>进入事件循环</h2><p>什么是事件循环，看到还是懵逼的，我先写两个例子将它的存在指出来：</p>
-<pre><code>setTimeout(() =&gt; {
-    console.log(&quot;异步处理&quot;);
-}, 1000);
-console.log(&apos;javascript end&apos;);
-//&apos;javascript end&apos;
-//&quot;异步处理&quot;
-</code></pre><p>第一个很简单，输出顺序如上，这个大家一看就知道，其实运行就是借助事件循环实现的，下面的例子会让你理解的更深刻：</p>
-<pre><code>setTimeout(() =&gt; {
-    console.log(&quot;异步处理&quot;);
-}, 0);
-console.log(&apos;javascript end&apos;);
-</code></pre><p>这个我就改了setTimeout的延迟时间，相当于没延迟，但是输出结果和第一个是相同的，大家肯定要想这个还是可以理解，因为你就算延迟为0，也相当于延迟了，在计算你延迟的时候我都进行到了下个代码，当然要执行了当前的语句在执行你，那我在后面多加很多的输出语句，在来看结果：</p>
-<pre><code>function heavyCompute(n) {
-    var count = 0,
-        i, j;
-
-    for (i = n; i &gt; 0; --i) {
-        for (j = n; j &gt; 0; --j) {
-            count += 1;
-        }
-    }
-}
-
-var t = new Date();
-
-setTimeout(function() {
-    console.log(new Date() - t);
-}, 1000);
-heavyCompute(50000);
-</code></pre><p>这个输出按照上面那么理解，就算不是1000，你多执行一个代码行，也只能加多少，忽略不计吧，但是事实却并非如此，他的执行在不同的浏览器和电脑中运行结果不会完全的相同，而且也不是很接近1000，这又是为什么？这就是事件处理机制导致的，有了上面三个案例的引入，相信已经对事件处理机制有了一定的认同了，要钻牛角尖的朋友，我也没办法了，大家可以去网上查更能理解这个的案例参考吧；</p>
-<h2 id="事件循环的运行机制"><a href="#事件循环的运行机制" class="headerlink" title="事件循环的运行机制"></a>事件循环的运行机制</h2><p>事件循环机制是怎么运行的呢？有了上面的讲解，大家应该有点猜到了，第二案例的代码在setTimeout后面无论加了多少代码都会执行了才会打印其内部的输出；事件循环可以解释为：将同步任务放在执行栈中执行，而碰到异步就放在任务队列中，等到执行栈执行完毕之后再去执行任务队列之中的事件。但是只了解这个对理解一个概念显得有点枯燥。</p>
-<h3 id="执行栈和任务队列"><a href="#执行栈和任务队列" class="headerlink" title="执行栈和任务队列"></a>执行栈和任务队列</h3><p>js有一个主进程和执行栈，当在对一个执行栈中的工作进行处理的时候，其他的工作就会等着，比如在遇到一些异步操作如setTimeout的时候，就会交给浏览器的其他模块进行处理（webkit是webcore模块），当异步处理完成时，就会把回调函数放在任务队列中等待执行栈的执行完毕，同时不同的异步处理的任务队列是不同的，当执行栈没有工作的时候，就会去执行任务队列中的回调函数。</p>
-<h3 id="setTiemout"><a href="#setTiemout" class="headerlink" title="setTiemout"></a>setTiemout</h3><p>对又是它，因为它的代码简单方便大家理解，先写出例子，然后一步一步的讲解，光看原理太枯燥了：</p>
-<pre><code>console.log(&apos;Hi&apos;);
-setTimeout(() =&gt; {
-    console.log(&quot;异步处理&quot;);
-}, 1000);
-console.log(&apos;javascript end&apos;);
-</code></pre><p>还是这个例子，加了第一行的代码，就这个给大家讲解事件循环机制下是怎么执行setTimeout的。<br>第一、js是从上到下单线程的，所以首先会遇到console.log(‘Hi’);这个代码会立即执行并输出Hi；<br><br>第二、js会遇到setTimeout，执行栈会将setTimeout提交到模块中进行延时处理；<br><br>第三、此时接着执行栈接着往下执行，此时又遇到console.log();将其中的内容输出了；<br><br>第四、当模块中的延时执行到时间过后，就会将其放在任务队列中，等待执行栈空闲；<br><br>第五、等到执行栈执行完毕后，执行引擎就会查询任务队列是否有回调函数，然后执行输出setTimeout的内部代码，执行结束在退出执行栈，又会再次检查任务队列是否有回调函数；</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>事件循环的基本理解就是这样，希望大家能自己一步一步的分析，这样对原理的理解才能深刻，但是真的就只有这些吗？当然不是，对于不同异步处理的函数，他们放在不同的模块中，那他们是否有执行的顺序（两个异步都在任务队列中），看下面的代码，大家可以自己思考下，后面的文章中我会接着进行介绍（我也去补下课先）。</p>
+        <h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>事件循环简单点解释就是js执行会有一个执行栈和任务队列，相关浏览器也会提供模块处理异步函数，当执行栈遇到异步函数的时候就会将其推入相应的模块中进行处理，执行栈会继续执行代码，当模块中的异步函数处理完了的时候就会把他的回调函数放在对应的任务队列中等待执行栈的空闲，当执行栈代码执行完毕后就会到任务队列中看有没回调函数，有则执行，执行完毕后继续查询任务队列中是否有回调函数。那么遇到两个不同的异步处理有没有执行的先后（如延迟为0ms的setTimeout和promise）;</p>
+<h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="遗留问题"><a href="#遗留问题" class="headerlink" title="遗留问题"></a>遗留问题</h2><p>上个文章还有个遗留的问题，如下：</p>
 <pre><code>const test = () =&gt; {
     setTimeout(() =&gt; { console.log(5) }, 0);
     new Promise((resolve, reject) =&gt; {
@@ -409,7 +372,11 @@ console.log(&apos;javascript end&apos;);
     console.log(3);
 }
 test();
-</code></pre><p><br>结果是什么呢，大家可以试着思考下，当然直接用node编辑出答案对自己是没有任何帮助的，如果文章有出错的地方，或者有更好的建议，还是想互相交流学习，欢迎联系我，联系方式：<a href="https://knife1.github.io/about/" title="联系方式" target="_blank" rel="external">https://knife1.github.io/about/</a></p>
+</code></pre><p>这个代码的结果是什么呢，有部分人第一眼肯定会说setTimeout和promise(es6中的语法，如果大家不清楚希望大家去补下，这个还是挺有用的)都是异步操作，这样的话那就都等执行栈执行完了，然后从任务队列中读取出来就执行，那么先输出setTimeout然后接着输出promise的内容，了解promise的朋友知道promise的内部函数不是异步中的回调会在执行栈中执行，但他的then和catch会放到任务队列中属于回调部分，这样最先会输出promise参数函数中的输出,猜想结果是<strong>1,2,3,5,4</strong>，但是最后结果却不是这样，结果是<strong>1,2,3,4,5</strong>，什么情况，顺序发了？<br><img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&amp;quality=100&amp;size=b4000_4000&amp;sec=1509437576&amp;di=58048daa75d4ce0494e994dfc51470cf&amp;src=http://p.nanrenwo.net/uploads/allimg/170301/8472-1F301100004-51.jpg" alt=""></p>
+<h2 id="关于任务队列"><a href="#关于任务队列" class="headerlink" title="关于任务队列"></a>关于任务队列</h2><p>上面的代码产生和预想不一样的原因，只要大家认真看我写的归纳就会发现，对于不同的异步函数，我们的任务队列是不同的，虽然我没有强调不同的任务队列，但是肯定是有区别的不然为什么放在不同的任务队列中，又听我强行的讲了一大堆，终于快要进入今天的正题了。<br><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892581912,2763988797&amp;fm=27&amp;gp=0.jpg" alt=""><br></p>
+<h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><p>setTimeout和promise都是任务源，promise的then方法的参数和setTimeout的回调函数被放在不同的任务队列中，setTimeout的任务队列叫做macro-task(宏任务)，而promise的任务队列叫做micro-task(微任务)<br><br>macro-task包括：script(整体代码), setTimeout, setInterval, setImmediate, I/O, UI rendering。<br><br>micro-task包括：process.nextTick, Promises, Object.observe, MutationObserver<br></p>
+<h3 id="跟新概念"><a href="#跟新概念" class="headerlink" title="跟新概念"></a>跟新概念</h3><p>有了宏任务和微任务的介绍，这里重新定义一次概念：事件循环从进入script后开始，然后对执行栈中的代码进行处理，每次遇到marco-task就输出到相应模块处理，处理完后回调函数放在macro-task，相应的micro-task也是一样的，直到执行栈清空，然后开始执行所有的mirco-task，当所有的可执行mirco-task执行结束后，就会执行marco-task的一个任务队列，执行完后就会执行所有的mirco-task，一直循环；</p>
+<h2 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h2><p>概念也讲了，大家都知道上面的答案是什么，这里我在逐个分析，这样加深我们对知识点的记忆；<br><br>首先： 执行栈执行script这个宏任务源，遇到到setTimeout，会推进相应的模块处理，处理完成后将回调函数放在marco-task任务队列中；<br><br>第二： 执行栈会遇到Promise但是不会立即放入到任务队列，其中的第一个参数是直接在执行栈中执行的，所以此时会输出内部的console.log（1）；<br><br>第三： 在for循环里面遇到resolve函数（改变promise的状态），此函数入栈执行之后出栈，此时Promise的状态变成Fulfilled。代码接着执行遇到console.log(2),输出2。<br><br>第四： 代码遇到then，将其参数放到mirco-task任务队列中；<br>第五： 代码接着执行会输出console.log(3);此刻script任务执行完了；<br><br>第六： 此刻执行所有mirco-task任务队列中的代码，此时执行promise放在mirco-task任务队列then的参数输出4；<br>第七： 这时候所有的micro-task执行完毕，第一轮循环结束。第二轮循环从setTimeout的任务队列开始，setTimeout的回调函数入栈执行完毕之后出栈，此时输出5。<br><br>一大篇的文字叙述肯定大家都有点头晕了，但是每个点弄个图说明有点麻烦，希望大家能理解，有不同的 见解可以相互交流。</p>
 
       
     </div>
@@ -446,8 +413,8 @@ test();
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/11/vue金额组件(二)/" rel="next" title="一个简单的vue金额输入组件（二）">
-                <i class="fa fa-chevron-left"></i> 一个简单的vue金额输入组件（二）
+              <a href="/2017/10/13/事件循环/" rel="next" title="事件循环">
+                <i class="fa fa-chevron-left"></i> 事件循环
               </a>
             
           </div>
@@ -455,10 +422,6 @@ test();
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/21/事件循环2/" rel="prev" title="继续事件循环">
-                继续事件循环 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -578,7 +541,7 @@ test();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#事件循环"><span class="nav-number">1.</span> <span class="nav-text">事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进入事件循环"><span class="nav-number">1.2.</span> <span class="nav-text">进入事件循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环的运行机制"><span class="nav-number">1.3.</span> <span class="nav-text">事件循环的运行机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行栈和任务队列"><span class="nav-number">1.3.1.</span> <span class="nav-text">执行栈和任务队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setTiemout"><span class="nav-number">1.3.2.</span> <span class="nav-text">setTiemout</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遗留问题"><span class="nav-number">2.1.</span> <span class="nav-text">遗留问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于任务队列"><span class="nav-number">2.2.</span> <span class="nav-text">关于任务队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#宏任务和微任务"><span class="nav-number">2.2.1.</span> <span class="nav-text">宏任务和微任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跟新概念"><span class="nav-number">2.2.2.</span> <span class="nav-text">跟新概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析代码"><span class="nav-number">2.3.</span> <span class="nav-text">分析代码</span></a></li></ol></li></ol></div>
             
 
           </div>

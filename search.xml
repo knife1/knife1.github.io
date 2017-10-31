@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[继续事件循环]]></title>
-      <url>/2017/10/17/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF2/</url>
+      <url>/2017/10/21/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF2/</url>
       <content type="html"><![CDATA[<h1 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h1><p>事件循环简单点解释就是js执行会有一个执行栈和任务队列，相关浏览器也会提供模块处理异步函数，当执行栈遇到异步函数的时候就会将其推入相应的模块中进行处理，执行栈会继续执行代码，当模块中的异步函数处理完了的时候就会把他的回调函数放在对应的任务队列中等待执行栈的空闲，当执行栈代码执行完毕后就会到任务队列中看有没回调函数，有则执行，执行完毕后继续查询任务队列中是否有回调函数。那么遇到两个不同的异步处理有没有执行的先后（如延迟为0ms的setTimeout和promise）;</p>
 <h1 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h1><h2 id="遗留问题"><a href="#遗留问题" class="headerlink" title="遗留问题"></a>遗留问题</h2><p>上个文章还有个遗留的问题，如下：</p>
 <pre><code>const test = () =&gt; {
